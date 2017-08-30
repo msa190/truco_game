@@ -13,7 +13,6 @@ class Mao(list):
 	def __init__(self,a):
 		numeroDeCartas = a
 	
-	#cartas = [Carta('foo','foo') for i in range(52)]
 	cartas = []
 	def mostrar(self):
 		for i in self.cartas:
