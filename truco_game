@@ -1,4 +1,4 @@
-numeros = ['As','2','3','4','J','Q','K']
+numeros = ['As','2','3','J','Q','K','4','7']
 naipes=['ouros', 'paus','copas','espadas']
 
 class Carta:
@@ -10,18 +10,27 @@ class Carta:
 			self.numero = numeros[a]
 			self.naipe = naipes[b]
 class Mao(list):
-	def __init__(self,a):
-		numeroDeCartas = a
-	
 	cartas = []
+	def __init__(self):
+		foo = 1
 	def mostrar(self):
 		for i in self.cartas:
 			print i.numero+' de '+ i.naipe
 			
-baralho = Mao(52)
-for k,i in enumerate(numeros):
+baralho = Mao()
+#completar As
+for i in numeros[:5]:
 	for j in naipes:
 		baralho.cartas.append(Carta(i,j))
+#define o zap
+zap = Carta(6,1)
+baralho.cartas.append(zap)
+#define o sete de copas
+sete_de_copas = Carta(7,2)
+baralho.cartas.append(sete_de_copas)
+#define o sete de ouro
+sete_de_ouro = Carta(7,0)
+baralho.cartas.append(Carta(sete_de_ouro))
 baralho.mostrar()
 #mao_um = Mao(3)
 #mao_um.cartas[0] = Carta(1,1)
