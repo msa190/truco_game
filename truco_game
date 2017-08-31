@@ -1,4 +1,4 @@
-numeros = ['As','2','3','J','Q','K','4','7']
+numeros = ['3','2','As','K','J','Q','4','7']
 naipes=['ouros', 'paus','copas','espadas']
 
 class Carta:
@@ -9,32 +9,59 @@ class Carta:
 		if(a in range(len(numeros)) and b in range(len(naipes))):
 			self.numero = numeros[a]
 			self.naipe = naipes[b]
+	def mostrar(self):
+		print self.numero + ' de ' + self.naipe
 class Mao(list):
 	cartas = []
-	def __init__(self):
-		foo = 1
 	def mostrar(self):
 		for i in self.cartas:
 			print i.numero+' de '+ i.naipe
 			
 baralho = Mao()
-#completar As
-for i in numeros[:5]:
-	for j in naipes:
-		baralho.cartas.append(Carta(i,j))
+
 #define o zap
 zap = Carta(6,1)
 baralho.cartas.append(zap)
+
 #define o sete de copas
 sete_de_copas = Carta(7,2)
 baralho.cartas.append(sete_de_copas)
+
+#define o espadilha
+sete_de_copas = Carta(2,1)
+baralho.cartas.append(sete_de_copas)
+
 #define o sete de ouro
 sete_de_ouro = Carta(7,0)
-baralho.cartas.append(Carta(sete_de_ouro))
-baralho.mostrar()
-#mao_um = Mao(3)
-#mao_um.cartas[0] = Carta(1,1)
-#mao_um.cartas[1] = Carta(1,2)
-#mao_um.cartas[2] = Carta(1,3)
-#mao_um.cartas[3] = Carta(1,4)
-#mao_um.mostrar()
+baralho.cartas.append(sete_de_ouro)
+
+
+#completar 3 e 2
+for i in numeros[0:2]:
+	for j in naipes:
+		baralho.cartas.append(Carta(i,j))
+#completar As
+for i in numeros[2:3]:
+	for j in naipes[0:3]:
+		baralho.cartas.append(Carta(i,j))
+#completar K,J,Q
+for i in numeros[3:6]:
+	for j in naipes:
+		baralho.cartas.append(Carta(i,j))
+
+#baralho.mostrar()
+manilhas = Mao()
+manilhas.cartas = baralho.cartas[:4]
+tres = Mao()
+tres.cartas = baralho.cartas[4:8]
+dois = Mao()
+dois.cartas = baralho.cartas[8:12]
+aas = Mao()
+aas.cartas = baralho.cartas[12:15]
+king = Mao()
+king.cartas = baralho.cartas[15:19]
+joquei = Mao()
+joquei.cartas = baralho.cartas[19:23]
+queen = Mao()
+queen.cartas = baralho.cartas[23:27]
+joquei.mostrar()
