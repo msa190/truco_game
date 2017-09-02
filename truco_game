@@ -1,3 +1,4 @@
+#encoding: utf8
 numeros = ['3','2','As','K','J','Q','4','7']
 naipes=['ouros', 'paus','copas','espadas']
 
@@ -11,6 +12,26 @@ class Carta:
 			self.naipe = naipes[b]
 	def mostrar(self):
 		print self.numero + ' de ' + self.naipe
+def valor(u):
+	if Carta(7,2) == sete_de_copas:
+		return 10
+	if u in queen.cartas:
+		return 1
+	if u in joquei.cartas:
+		return 2
+	if u in king.cartas:
+		return 3
+	if u in aas.cartas:
+		return 4
+	if u in dois.cartas:
+		return 5
+	if u in tres.cartas:
+		return 6
+	else:
+		print "erro"
+
+#class jogador:
+	
 class Mao(list):
 	cartas = []
 	def mostrar(self):
@@ -64,4 +85,5 @@ joquei = Mao()
 joquei.cartas = baralho.cartas[19:23]
 queen = Mao()
 queen.cartas = baralho.cartas[23:27]
-joquei.mostrar()
+print valor(Carta(6,1))
+
