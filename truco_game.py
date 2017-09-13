@@ -27,13 +27,20 @@ class Carta:
 	def __gt__(self,b):
 		if self.valor > b.valor:
 			return True
-#class jogador:
 	
-class Mao(list):
+class Mao:
 	cartas = []
 	def __str__(self):
 		for i in self.cartas:
-			return i.numero + ' de ' + i.naipe
+			string = ''
+			for i in self.cartas:
+				string +=i.numero +' de '+i.naipe
+				string +='\n'
+		return string
+class MaoDeTruco(Mao):
+	def __init__(self,a = []):
+		self.cartas = a[:]
+		
 class BaralhoDeTruco(Mao):
 	def __init__(self):
 		#define o zap
@@ -73,13 +80,93 @@ class BaralhoDeTruco(Mao):
 				if i == 12:
 					self.cartas.append(Carta(i,j))
 					self.cartas[-1].valor = 2
-def combate(a,b):
-	if a>b:
-		print a,"mata",b
-	if a<b:
-		print b,"mata",a
+class Jogador:
+	nome = ""
+	def __init__(self, nome):
+		self.nome = nome
+	def joga(self):
+		mesa.cartas.append()
+		del self.cartas[-1]
+	cartas = []
+	pontos = 0
+	
+def mao_da_maior(a =[]):
+	if a[0]>a[1]:
+		if a[0]>a[2]:
+			return a[0]
+		if (a[0]>a[2])==None:
+			return a[0]
+		if a[2]>a[0]:
+			return a[2]
+	if a[0]>a[2]:
+		if a[0]>a[1]:
+			return a[0]
+		if (a[0]>a[1])==None:
+			return a[0]
+		if a[1]>a[0]:
+			return a[1]
+	if a[1]>a[0]:
+		if a[1]>a[2]:
+			return a[1]
+		if (a[2]>a[1])==None:
+			return a[2]	
+		if a[2]>a[1]:
+			return a[2]
+	if a[1]>a[2]:
+		if a[1]>a[0]:
+			return a[0]
+		if (a[1]>a[0])==None:
+			return a[1]
+		if a[0]>a[1]:
+			return a[0]
+	if a[2]>a[0]:
+		if a[2]>a[1]:
+			return a[2]
+		if (a[2]>a[0])==None:
+			return a[2]
+		if a[1]> a[2]:
+			return a[1]
+	if a[2]>a[1]:
+		if a[2]>a[0]:
+			return a[2]
+		if (a[2]>a[0])==None:
+			return a[2]
+		if a[0]> a[2]:
+			return a[0]
+def cangou(jogadorA,jogadorB,i):
+	if i == 0:
+		if mao_da_maior(jogadorA) > mao_da_maior(jogadorB):
+			jogadorA.ganha()
+		if mao_da_maior(jogadorA) < mao_da_maior(jogadorB):
+			jogadorB.ganha()
+		else:
+			jogo.acaba()
 	else:
-		print "Empate"
+		if jogadorA.pontos> jogadorB.pontos:
+			jogadorA.ganha()
+		if jogadorA.pontos< jogadorB.pontos:
+			jogadorB.ganha()
+			
+
+def jogo_de_truco(jogadorA,jogadorB):
+	def acaba():
+		return ganhador
+	i = 0
+	while i<= 2:
+		if jogadorA.cartas[i]>jogadorB.cartas[i]:
+			jogadorA.pontos += i*i -2*i + 1
+		if jogador.cartasA[i]<jogadorB.cartas[i]:
+			jogadorB.pontos += i*i -2*i + 1
+		else:
+			cangou(jogadorA,jogadorB,i)
+			break
+		if jogadorA.pontos == 3:
+			ganhador = jogadorA			
+			acaba()
+		if jogadorB.pontos == 3:
+			ganhador = jogadorB
+			acaba
+		i+=1
 baralho = BaralhoDeTruco()
-for i in baralho.cartas:
-	print i, i.valor
+jogador1 = MaoDeTruco([baralho.cartas[21],baralho.cartas[7],baralho.cartas[9]])
+jogador2 = MaoDeTruco([baralho.cartas[4],baralho.cartas[5],baralho.cartas[20]])
