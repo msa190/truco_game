@@ -30,6 +30,20 @@ class Carta:
 	
 class Mao:
 	cartas = []
+	def permutacao(self, v = []):
+		u = self.cartas
+		if len(u) != len(v):
+			raise
+		w = []
+		for i in v:
+			w.append(u[i-1])
+		return w
+
+	def __mul__(self,v=[]):
+		u = self.cartas
+		return self.permutacao(v)
+	def __len__(self):
+		return len(self.cartas)
 	def __str__(self):
 		for i in self.cartas:
 			string = ''
@@ -39,8 +53,7 @@ class Mao:
 		return string
 class MaoDeTruco(Mao):
 	def __init__(self,a = []):
-		self.cartas = a[:]
-		
+		self.cartas = a[:]		
 class BaralhoDeTruco(Mao):
 	def __init__(self):
 		#define o zap
@@ -52,7 +65,7 @@ class BaralhoDeTruco(Mao):
 		self.cartas[-1].valor = 8
 
 		#define o espadilha
-		self.cartas.append(Carta(0,1))
+		self.cartas.append(Carta(0,3))
 		self.cartas[-1].valor = 7
 
 		#define o sete de ouro
@@ -89,74 +102,68 @@ class Jogador:
 		del self.cartas[-1]
 	cartas = []
 	pontos = 0
+		
 	
 def mao_da_maior(a =[]):
 	if a[0]>a[1]:
-		if a[0]>a[2]:
-			return a[0]
-		if (a[0]>a[2])==None:
-			return a[0]
-		if a[2]>a[0]:
-			return a[2]
-	if a[0]>a[2]:
-		if a[0]>a[1]:
-			return a[0]
-		if (a[0]>a[1])==None:
-			return a[0]
-		if a[1]>a[0]:
-			return a[1]
+		return a[0]
+	#	if a[0]>a[2]:
+	#		return a[0]
+	#	if (a[0]>a[2])==None:
+	#		return a[0]
+	#	if a[2]>a[0]:
+	#		return a[2]
+	#if a[0]>a[2]:
+	#	if a[0]>a[1]:
+	#		return a[0]
+	#	if (a[0]>a[1])==None:
+	#		return a[0]
+	#	if a[1]>a[0]:
+	#		return a[1]
 	if a[1]>a[0]:
-		if a[1]>a[2]:
-			return a[1]
-		if (a[2]>a[1])==None:
-			return a[2]	
-		if a[2]>a[1]:
-			return a[2]
-	if a[1]>a[2]:
-		if a[1]>a[0]:
-			return a[0]
-		if (a[1]>a[0])==None:
-			return a[1]
-		if a[0]>a[1]:
-			return a[0]
-	if a[2]>a[0]:
-		if a[2]>a[1]:
-			return a[2]
-		if (a[2]>a[0])==None:
-			return a[2]
-		if a[1]> a[2]:
-			return a[1]
-	if a[2]>a[1]:
-		if a[2]>a[0]:
-			return a[2]
-		if (a[2]>a[0])==None:
-			return a[2]
-		if a[0]> a[2]:
-			return a[0]
-def cangou(jogadorA,jogadorB,i):
-	if i == 0:
-		if mao_da_maior(jogadorA) > mao_da_maior(jogadorB):
-			jogadorA.ganha()
-		if mao_da_maior(jogadorA) < mao_da_maior(jogadorB):
-			jogadorB.ganha()
-		else:
-			jogo.acaba()
-	else:
-		if jogadorA.pontos> jogadorB.pontos:
-			jogadorA.ganha()
-		if jogadorA.pontos< jogadorB.pontos:
-			jogadorB.ganha()
-			
-
+		return a[1]
+	#	if a[1]>a[2]:
+	#		return a[1]
+	#	if (a[2]>a[1])==None:
+	#		return a[2]	
+	#	if a[2]>a[1]:
+	#		return a[2]
+	#if a[1]>a[2]:
+	#	if a[1]>a[0]:
+	#		return a[0]
+	#	if (a[1]>a[0])==None:
+	#		return a[1]
+	#	if a[0]>a[1]:
+	#		return a[0]
+	#if a[2]>a[0]:
+	#	if a[2]>a[1]:
+	#		return a[2]
+	#	if (a[2]>a[0])==None:
+	#		return a[2]
+	#	if a[1]> a[2]:
+	#		return a[1]
+	#if a[2]>a[1]:
+	#	if a[2]>a[0]:
+	#		return a[2]
+	#	if (a[2]>a[0])==None:
+	#		return a[2]
+	#	if a[0]> a[2]:
+	#		return a[0]
+def cangou(jogadorA,jogadorB):
+	if mao_da_maior(jogadorA.cartas) > mao_da_maior(jogadorB.cartas):
+		return 'jogadorA'
+	if mao_da_maior(jogadorA.cartas) < mao_da_maior(jogadorB.cartas):
+		return 'jogadorB'
+	
 def jogo_de_truco(jogadorA,jogadorB):
 	def acaba():
 		return ganhador
 	i = 0
 	while i<= 2:
 		if jogadorA.cartas[i]>jogadorB.cartas[i]:
-			jogadorA.pontos += i*i -2*i + 1
+			jogadorA.pontos += i*i -2*i + 2
 		if jogador.cartasA[i]<jogadorB.cartas[i]:
-			jogadorB.pontos += i*i -2*i + 1
+			jogadorB.pontos += i*i -2*i + 2
 		else:
 			cangou(jogadorA,jogadorB,i)
 			break
@@ -165,8 +172,43 @@ def jogo_de_truco(jogadorA,jogadorB):
 			acaba()
 		if jogadorB.pontos == 3:
 			ganhador = jogadorB
-			acaba
+			
 		i+=1
 baralho = BaralhoDeTruco()
-jogador1 = MaoDeTruco([baralho.cartas[21],baralho.cartas[7],baralho.cartas[9]])
-jogador2 = MaoDeTruco([baralho.cartas[4],baralho.cartas[5],baralho.cartas[20]])
+jogador1 = MaoDeTruco([baralho.cartas[4],baralho.cartas[10],baralho.cartas[3]])
+jogador2 = MaoDeTruco([baralho.cartas[2],baralho.cartas[5],baralho.cartas[20]])
+permutacao1 = [0,2,1]
+permutacao2 = [0,2,1]
+pontos_jogador1 = 0
+pontos_jogador2 = 0
+i =0
+#uma função organizadora
+#dada uma lista com n elementos, "multiplicamos" uma lista por uma permutação e lista*permutação e obtemos uma lista permutada
+while i<=2:
+	print 'Rodada',i+1
+	print '\n'
+	print 'Jogador A\n',jogador1
+	print '\n'
+	print 'Jogador B\n',jogador2
+	print jogador1.cartas[permutacao1[i]],"       ",jogador2.cartas[permutacao2[i]]
+	if i==0 and jogador1.cartas[permutacao1[i]].valor == jogador2.cartas[permutacao2[i]].valor:
+		print 'cangou!'
+		print mao_da_maior(jogador1.cartas),'       ',mao_da_maior(jogador2.cartas)
+		print cangou(jogador1,jogador2), 'ganhou'
+		break
+	if jogador1.cartas[permutacao1[i]] > jogador2.cartas[permutacao2[i]]:
+		pontos_jogador1 +=i*i -2*i + 2
+		print "rodada do jogador 1"
+	if jogador1.cartas[permutacao1[i]] < jogador2.cartas[permutacao2[i]]:
+		pontos_jogador2 +=i*i -2*i+2
+		print "rodada do jogador 2"
+	print '\n'
+	i+=1
+if pontos_jogador1 > pontos_jogador2:
+	print 'Jogador 1 ganhou'
+if pontos_jogador1 < pontos_jogador2:
+	print 'Jogador 2 ganhou'
+
+lista1=MaoDeTruco([5,6,7,8])
+lista2=[1,2,4,3]
+print lista1*lista2	
