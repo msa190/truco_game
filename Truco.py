@@ -1,4 +1,5 @@
 from Baralho import *
+from Jogador import *
 class BaralhoDeTruco(Mao):
 	def __init__(self):
 		#define o zap
@@ -43,22 +44,49 @@ class MaoDeTruco(Mao):
 	def __init__(self,a = []):
 		self.cartas = a[:]
 	
-	def mao_da_maior(self):
-		if self.cartas[0]>self.cartas[1]:
-			return self.cartas[0]
-		if self.cartas[1]>self.cartas[0]:
-			return self.cartas[1]
+	def mao_da_maior(self,caso = 1):
+		if caso == 1:
+			return [self.cartas[0],0]
+		else:
+			if self.cartas[0]>self.cartas[1]:
+				return [self.cartas[0],0]
+			
+			if self.cartas[1]>self.cartas[0]:
+				return [self.cartas[1],1]
+			
+			if self.cartas[1]==self.cartas[0]:
+				del self.cartas[0]
+				return [self.cartas[1],1]
+		
+		
+			
 
-def cangou(jogadorA,jogadorB,i):
+def cangou(jogadorA,jogadorB,i,caso=0):
+	empate = Jogador("empate")
 	if i == 0:
-		if jogadorA.mao.mao_da_maior() > jogadorB.mao.mao_da_maior():
+		if jogadorA.mao.mao_da_maior()[0] > jogadorB.mao.mao_da_maior()[0]:
 			return jogadorA
-		if jogadorA.mao.mao_da_maior() < jogadorB.mao.mao_da_maior():
+		elif jogadorA.mao.mao_da_maior()[0] < jogadorB.mao.mao_da_maior()[0]:			
 			return jogadorB
+		else:
+
+			del jogadorA.mao.cartas[jogadorA.mao.mao_da_maior()[1]]
+			del jogadorB.mao.cartas[jogadorB.mao.mao_da_maior()[1]]
+			
+			print jogadorA.mao.cartas[0].valor
+			print jogadorB.mao.cartas[0].valor
+			
+			if jogadorA.mao.cartas[0]>jogadorB.mao.cartas[0]:
+				return jogadorA
+				
+			if jogadorA.mao.cartas[0]<jogadorB.mao.cartas[0]:
+				return jogadorB
+			if jogadorA.mao.cartas[0] == jogadorB.mao.cartas[0]:
+				return empate
+			
 	else:
  		if jogadorA.pontos> jogadorB.pontos:
 			return jogadorA
 		if jogadorA.pontos<jogadorB.pontos:
 			return jogadorB
-
 
