@@ -4,7 +4,7 @@ class Carta:
 	valor = 0	
 	numero = None
 	naipe = None
-
+	
 	def __init__(self, a, b):
 		if(a in self._numeros and b in self._naipes ):
 			self.numero = a		
