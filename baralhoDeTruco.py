@@ -38,4 +38,3 @@ class BaralhoDeTruco(Mao):
 					self.cartas.append(Carta(i,j))
 
 					self.cartas[-1].valor = 2
-
