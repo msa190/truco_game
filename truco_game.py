@@ -12,7 +12,10 @@ def jogo_de_truco(jogadorA,jogadorB):
 	ordem=[[jogadorA,jogadorB],[jogadorB,jogadorA]]
 	i = 0
 	log1.write('\n'+str(jogo)+';')
-	k = 0
+	comecante = [0,1]
+	random.shuffle(ordem)
+	k = comecante[0]
+	log1.write(str(ordem[k][1]))
 	
 	while i<= 2:
 		#print k
@@ -30,7 +33,7 @@ def jogo_de_truco(jogadorA,jogadorB):
 			ganhador = cangou(ordem[k][0],ordem[k][1],i)
 			
 			#funcao acaba() -------------- implementar
-			log1.write(ganhador.name)
+			log1.write(';'+ganhador.name)
 			print ganhador
 			#return ganhador
 			break
@@ -40,7 +43,7 @@ def jogo_de_truco(jogadorA,jogadorB):
 			ganhador = ordem[k][0]
 			
 			#funcao acaba() -------------- implementar		
-			log1.write(ganhador.name)
+			log1.write(';'+ganhador.name)
 			print ganhador
 			break
 			#-----------------------------------------
@@ -50,7 +53,7 @@ def jogo_de_truco(jogadorA,jogadorB):
 			ganhador = ordem[k][1]
 
 			#funcao acaba() -------------- implementar
-			log1.write(ganhador.name)
+			log1.write(';'+ganhador.name)
 			print ganhador
 			break
 			#-----------------------------------------
@@ -72,9 +75,10 @@ baralho = BaralhoDeTruco()
 random.shuffle(baralho.cartas)
 random.shuffle(baralho.cartas)
 
-jogador1 = Jogador("jogadorA")
+jogador1 = Jogador("Mauricio")
 jogador1.mao= MaoDeTruco([baralho.cartas.pop(),baralho.cartas.pop(),baralho.cartas.pop()])
 
-jogador2 = Jogador('jogadorB')
+jogador2 = Jogador('Gabriel')
 jogador2.mao= MaoDeTruco([baralho.cartas.pop(),baralho.cartas.pop(),baralho.cartas.pop()])
+
 jogo_de_truco(jogador1,jogador2)
