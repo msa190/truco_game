@@ -22,3 +22,4 @@ class Jogador():
 		log1.write(';'+str(a))
 		print str(a)
 		return a
+		# comentário aleatório
