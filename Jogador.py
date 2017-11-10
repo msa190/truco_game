@@ -12,11 +12,12 @@ class Jogador():
 		return
 	def __str__(self):
 		return self.name
-	def joga(self):
-		print self
-		print '\n'
-		print self.mao
-		carta = input('Que carta deseja jogar?  ')
+	def joga(self, carta):
+		if not carta: 
+			print self
+			print '\n'
+			print self.mao
+			carta = input('Que carta deseja jogar?  ')
 		a = self.mao.cartas[carta-1]	
 		del self.mao.cartas[carta-1]
 		log1.write(';'+str(a))

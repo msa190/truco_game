@@ -36,14 +36,6 @@ class Carta:
 
 class Mao:
 	cartas = []
-	def permutacao(self, v = []):
-		u = self.cartas
-		if len(u) != len(v):
-			raise
-		w = []
-		for i in v:
-			w.append(u[i-1])
-		return w
 
 	def __mul__(self,v=[]):
 		u = self.cartas
