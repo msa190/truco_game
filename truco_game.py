@@ -155,16 +155,5 @@ def teste_de_truco(jogadorA, jogadorB, A = [], B = [],jogo = 1):
 			acaba(ganhador)
 			break
 			#-----------------------------------------
-			
-			#return ganhador	
-		# if carta1 > carta2:
-		# 	print "Torna a maior"
-		# if carta1 < carta2:
-		# 	buff = k
-		# 	print 'Torna a maior'
-		# 	if buff == 0:
-		# 		k = 1			
-		# 	if buff == 1:
-		# 		k = 0
 				
 		i+=1
