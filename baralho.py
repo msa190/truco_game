@@ -1,5 +1,6 @@
 import random 
 
+
 class Carta():
 	_numeros = ['As', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 	_naipes = ['ouros', 'paus', 'copas', 'espadas']
@@ -38,6 +39,7 @@ class Carta():
 	def __ne__(self, b):
 		True if self.valor != b.valor else False
 
+
 class Mao():
 	cartas = []
 
@@ -54,7 +56,7 @@ class Mao():
 	def __str__(self):
 		string = ''
 		for j, i in enumerate(self.cartas):
-			string += ' ' + str(j+1)
+			string += ' ' + str(j + 1)
 			string += ')'
 			string += i.numero
 			string += ' de '
