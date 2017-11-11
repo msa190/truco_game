@@ -1,8 +1,8 @@
 import random 
 
 class Carta():
-	_numeros = ['As','2','3','4','5','6','7','8','9','10','J','Q','K']
-	_naipes=['ouros', 'paus','copas','espadas']
+	_numeros = ['As', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+	_naipes = ['ouros', 'paus', 'copas', 'espadas']
 	valor = 0	
 	numero = None
 	naipe = None
@@ -21,45 +21,21 @@ class Carta():
 		return self.numero + ' de ' + self.naipe
 	
 	def __eq__(self, b):
-		# if self.valor == b.valor:
-		# 	return True
-		# else:
-		# 	return False
-		True if self.valor == b.valor: else False
+		True if self.valor == b.valor else False
 
-	def __lt__(self,b):
-		# if self.valor < b.valor:
-		# 	return True
-		# else:
-		# 	return False
-		True if self.valor < b.valor: else False
+	def __lt__(self, b):
+		True if self.valor < b.valor else False
 	
-	def __gt__(self,b):
-		# if self.valor > b.valor:
-		# 	return True
-		# else:
-		# 	return False
-		True if self.valor > b.valor: else False
+	def __gt__(self, b):
+		True if self.valor > b.valor else False
 	
 	def __le__(self, b):
-		# if self.valor <= b.valor:
-		# 	return True
-		# else:
-		# 	return False
-		True if self.valor <= b.valor: else False
+		True if self.valor <= b.valor else False
 
-	def __ge__(self,b):
-		# if self.valor >= b.valor:
-		# 	return True
-		# else:
-		# 	return False
-		True if self.valor >= b.valor: else False
+	def __ge__(self, b):
+		True if self.valor >= b.valor else False
 
 	def __ne__(self, b):
-		# if self.valor != b.valor:
-		# 	return True
-		# else:
-		# 	return False
 		True if self.valor != b.valor else False
 
 class Mao():
@@ -81,9 +57,9 @@ class Mao():
 			string += ' ' + str(j+1)
 			string += ')'
 			string += i.numero
-			string +=' de '
+			string += ' de '
 			string += i.naipe
-			string +='\n'
+			string += '\n'
 		return string
 	
 	def shuffle(self):
@@ -117,30 +93,29 @@ class Mao():
 class BaralhoDeTruco(Mao):
 	def __init__(self):
 		#define o zap
-		self.cartas.append(Carta(3,1,9))
+		self.cartas.append(Carta(3, 1, 9))
 	
 		#define o sete de copas
-		self.cartas.append(Carta(6,2,8))
+		self.cartas.append(Carta(6, 2, 8))
 
 		#define o espadilha
-		self.cartas.append(Carta(0,3,7))
-
+		self.cartas.append(Carta(0, 3, 7))
 
 		#define o sete de ouro
-		self.cartas.append(Carta(6,0,6))
+		self.cartas.append(Carta(6, 0, 6))
 	
 		for i in range(13):
 			for j in range(4):
 				if i == 0:
-					if j!= 3:
-						self.cartas.append(Carta(i,j,3))
+					if j != 3:
+						self.cartas.append(Carta(i, j, 3))
 				if i == 1:
-					self.cartas.append(Carta(i,j,4))
+					self.cartas.append(Carta(i, j, 4))
 				if i == 2:
-					self.cartas.append(Carta(i,j,5))
+					self.cartas.append(Carta(i, j, 5))
 				if i == 10:
-					self.cartas.append(Carta(i,j,1))
+					self.cartas.append(Carta(i, j, 1))
 				if i == 11:
-					self.cartas.append(Carta(i,j,0))
+					self.cartas.append(Carta(i, j, 0))
 				if i == 12:
-					self.cartas.append(Carta(i,j,2))
+					self.cartas.append(Carta(i, j, 2))
