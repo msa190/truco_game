@@ -10,16 +10,16 @@ class Carta():
 	
 	def __init__(self, a, b, valor=0):
 		if(a in self._numeros and b in self._naipes ):
-			self.numero = a		
-			self.naipe = b
+			self.numero = _numeros.index(a)	
+			self.naipe = _naipes.index(b)
 		if(a in range(len(self._numeros)) and b in range(len(self._naipes))):
-			self.numero = self._numeros[a]
-			self.naipe = self._naipes[b]
+			self.numero = a
+			self.naipe = b
 		
 		self.valor = valor
 
 	def __str__(self):
-		return self.numero +'\''+ self.naipe
+		return str(self.numero) + '|' + str(self.naipe)
 	
 	def __eq__(self, b):
 		return True if self.valor == b.valor else False

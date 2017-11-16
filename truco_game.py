@@ -113,6 +113,8 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		
 	log1.write(logx)
 
+logx = ''
+
 def acaba(jogador, logx):
 	debug('\nThe winner is... ' + str(jogador))
 	logx += str(jogador)
