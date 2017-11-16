@@ -1,18 +1,8 @@
-
 import itertools
 import random
 import baralho
 import jogador
 import truco_game
-
-# mapa = [
-# 	[1,1,1],		#[1,2,3],
-# 	[1,2,1],		#[1,3,2],
-# 	[2,1,1],		#[2,1,3],
-# 	[2,2,1],		#[2,3,1],
-# 	[3,1,1],		#[3,1,2],
-# 	[3,2,1]			#[3,2,1],
-# ]
 
 N = 0 
 baralho = baralho.BaralhoDeTruco()
@@ -38,6 +28,5 @@ if __name__ == '__main__':
 		truco_game.teste_de_truco(jogador1, jogador2, [1,1,1], [1,1,1])
 
 		i += 1
-		# print i
 
 print i
