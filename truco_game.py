@@ -1,7 +1,7 @@
 #encoding: utf8
 import random
 from jogador import Jogador
-log1 = open('log1.log', 'a')
+log1 = open('resultados.log', 'a')
 
 DEBUG = False
 
@@ -29,7 +29,6 @@ def cangou(jogadorA, jogadorB, i, caso=0):
 		if jogadorA.pontos < jogadorB.pontos:
 			return jogadorB
 
-#logx = ''
 
 def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 	ordem = [[jogadorA, jogadorB], [jogadorB, jogadorA]]
@@ -113,11 +112,9 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		
 	log1.write(logx)
 
-logx = ''
 
-def acaba(jogador, logx):
+def acaba(jogador):
 	debug('\nThe winner is... ' + str(jogador))
-	logx += str(jogador)
 
 def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	logx = ''
@@ -125,24 +122,18 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	i = 0
 	comecante = [0, 1]
 	k = comecante[0]
+	
+	logx += str(jogadorA.mao.cartas[0]) + ';' + str(jogadorA.mao.cartas[1]) + ';' + str(jogadorA.mao.cartas[2]) + ';'
+	logx += str(jogadorB.mao.cartas[0]) + ';' +  str(jogadorB.mao.cartas[1]) + ';' + str(jogadorB.mao.cartas[2]) + ';'
+
 	while i <= 2:
 		debug('\n---------------------------------------------Rodada' +  str(i + 1))
 		carta1 = ordem[k][0].joga(A[i])
 		
-		logx += str(ordem[k][0])
-		logx += ';'
-		logx += str(carta1)
-		logx += ';'
-		
 		debug('\n')
 		
 		carta2 = ordem[k][1].joga(B[i])
-		
-		logx += str(ordem[k][1])
-		logx += ';'
-		logx += str(carta2)
-		logx += ';'
-		
+
 		if carta1 > carta2:
 			ordem[k][0].pontos += i*i -2*i + 2
 			
@@ -152,22 +143,24 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 		if carta1 == carta2:
 			debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
-			acaba(ganhador, logx)
+			acaba(ganhador)
+			logx += str(ganhador) + ';' + str(i + 1)
 			break
 			
 		if ordem[k][0].pontos >= 3:
 			ganhador = ordem[k][0]
-			acaba(ganhador, logx)
+			acaba(ganhador)
+			logx += str(ganhador) + ';' + str(i + 1)
 			break
-			
 			
 		if ordem[k][1].pontos >= 3:
 			ganhador = ordem[k][1]
-			acaba(ganhador, logx)
+			acaba(ganhador)
+			logx += str(ganhador) + ';' + str(i + 1)
 			break
 		
 		if carta1 > carta2:
-			debug('Torna a maior')
+			debug('Torna a maior') 
 		elif carta1 < carta2:
 			buff = comecante[0]
 			debug('Torna a maior')
