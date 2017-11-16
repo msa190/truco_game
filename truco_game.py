@@ -3,9 +3,7 @@ import random
 from jogador import Jogador
 log1 = open('log1.log', 'a')
 
-jogo = 1 #wtf
-
-DEBUG = False
+DEBUG = True
 
 def cangou(jogadorA, jogadorB, i, caso=0):
 	empate = Jogador('empate')
@@ -30,18 +28,19 @@ def cangou(jogadorA, jogadorB, i, caso=0):
 
 		if jogadorA.pontos < jogadorB.pontos:
 			return jogadorB
-
-
+#logx = [jogo;,jogador;,carta;,jogador;,carta;,jogador;,carta;,jogador;,carta;,jogador;,carta;,jogador;,carta;,ganhador]] 
+logx = []
 def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 	ordem = [[jogadorA, jogadorB], [jogadorB, jogadorA]]
 	i = 0
-	log1.write('\n'+str(jogo) + ';')
-	
+	#log1.write('\n'+str(jogo) + ';')
+	logx.append('\n'+str(jogo)+';')
 	comecante = [0, 1]
 	random.shuffle(ordem)
 	
 	k = comecante[0]
-	log1.write(str(ordem[k][1]))
+	#log1.write(str(ordem[k][1]))
+	logx.append(str(ordem[k][1])+';')
 	
 	while i <= 2:
 		#print k
@@ -60,7 +59,8 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
 			
 			#funcao acaba() -------------- implementar
-			log1.write(';' + ganhador.name)
+			#log1.write(';' + ganhador.name)
+			logx.append(';;;;;;;;'+ganhador.name)
 			print ganhador
 			#return ganhador
 			break
@@ -68,9 +68,14 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 			
 		if ordem[k][0].pontos >= 3:
 			ganhador = ordem[k][0]
-			
 			#funcao acaba() -------------- implementar		
-			log1.write(';' + ganhador.name)
+			#log1.write(';' + ganhador.name)
+			if i == 1:
+				logx.append(';;;;;;;;' + ganhador.name)
+			
+			if i == 2:
+				logx.append(';;;;' + ganhador.name)
+			
 			print ganhador
 			break
 			#-----------------------------------------
@@ -78,9 +83,14 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 			#return ganhador
 		if ordem[k][1].pontos >= 3:
 			ganhador = ordem[k][1]
-
+			
 			#funcao acaba() -------------- implementar
-			log1.write(';' + ganhador.name)
+			#log1.write(';' + ganhador.name)
+			if i == 1:
+				logx.append(';;;;;;;;' + ganhador.name)
+			
+			if i == 2:
+				logx.append(';;;;' + ganhador.name)
 			print ganhador
 			break
 			#-----------------------------------------
@@ -88,23 +98,23 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 			#return ganhador	
 
 		#Is useful ?
-		# if carta1 > carta2:
-		# 	print "Torna a maior"
-		# elif carta1 < carta2:
-		# 	buff = k
-		# 	print 'Torna a maior'
-		# 	if buff == 0:
-		# 		k = 1			
-		# 	if buff == 1:
-		# 		k = 0
-				
+		if carta1 > carta2:
+			print "Torna a maior"
+		elif carta1 < carta2:
+			buff = k
+			print 'Torna a maior'
+		if buff == 0:
+			k = 1			
+		if buff == 1:
+			k = 0
+	
 		i += 1
-
-
+		
+	log1.write(logx)
 def acaba(jogador):
-	debug('\nThe winner is... ' + str(jogador))
-	# print '\nThe winner is...: ', jogador
-
+	#debug('\nThe winner is... ' + 'null')
+	print '\nThe winner is...: ', jogador
+	
 
 def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	ordem=[[jogadorA, jogadorB], [jogadorB, jogadorA]]
@@ -118,10 +128,10 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	while i <= 2:
 		#print k
 		# print '\n---------------------------------------------Rodada', i + 1
-		debug('\n---------------------------------------------Rodada' +  str(i + 1))
+		#debug('\n---------------------------------------------Rodada' +  str(i + 1))
 		carta1 = ordem[k][0].joga(A[i])
 		# print '\n'
-		debug('\n')
+		#debug('\n')
 		carta2 = ordem[k][1].joga(B[i])
 		
 		if carta1 > carta2:
@@ -132,7 +142,7 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			
 		if carta1 == carta2:
 			# print '\nCangou!\n'
-			debug('\nCangou!\n')
+		#	debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
 			acaba(ganhador)
 			break
@@ -150,7 +160,16 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			acaba(ganhador)
 			break
 			#-----------------------------------------
-				
+		
+		if carta1 > carta2:
+			print "Torna a maior"
+		elif carta1 < carta2:
+			buff = k
+			print 'Torna a maior'
+		if buff == 0:
+			k = 1			
+		if buff == 1:
+			k = 0
 		i += 1
 
 
