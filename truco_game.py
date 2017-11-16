@@ -1,12 +1,13 @@
 #encoding: utf8
 import random
 from jogador import Jogador
-log1 = open('resultados.log', 'a')
+log1 = open('resultados.log', 'w')
 
 DEBUG = False
 
 def cangou(jogadorA, jogadorB, i, caso=0):
 	empate = Jogador('empate')
+
 	if i == 0:
 		if jogadorA.mao.get_maior() > jogadorB.mao.get_maior():
 			return jogadorA
@@ -33,17 +34,12 @@ def cangou(jogadorA, jogadorB, i, caso=0):
 def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 	ordem = [[jogadorA, jogadorB], [jogadorB, jogadorA]]
 	i = 0
-	#log1.write('\n'+str(jogo) + ';')
-	logx.append('\n'+str(jogo)+';')
 	comecante = [0, 1]
 	random.shuffle(ordem)
 	
 	k = comecante[0]
-	#log1.write(str(ordem[k][1]))
-	logx.append(str(ordem[k][1])+';')
 	
 	while i <= 2:
-		#print k
 		#debug( '\nRodada', i + 1, '\n')
 		
 		carta1 = ordem[k][0].joga()
@@ -57,44 +53,33 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		else:
 			debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
-			
-			#funcao acaba() -------------- implementar
-			#log1.write(';' + ganhador.name)
-			logx.append(';;;;;;;;'+ganhador.name)
+
 			debug(ganhador)
-			#return ganhador
 			break
-			#-----------------------------------------
 			
 		if ordem[k][0].pontos >= 3:
 			ganhador = ordem[k][0]
-			#funcao acaba() -------------- implementar		
-			#log1.write(';' + ganhador.name)
 			if i == 1:
-				logx.append(';;;;;;;;' + ganhador.name)
+				pass
 			
 			if i == 2:
-				logx.append(';;;;' + ganhador.name)
+				pass
 			
 			print ganhador
 			break
-			#-----------------------------------------
 			
 			#return ganhador
 		if ordem[k][1].pontos >= 3:
 			ganhador = ordem[k][1]
 			
-			#funcao acaba() -------------- implementar
-			#log1.write(';' + ganhador.name)
 			if i == 1:
-				logx.append(';;;;;;;;' + ganhador.name)
+				pass
 			
 			if i == 2:
-				logx.append(';;;;' + ganhador.name)
+				pass
 			print ganhador
 			break
-			#-----------------------------------------
-			
+
 			#return ganhador	
 
 		#Is useful ?
@@ -109,12 +94,11 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 				k = 0
 	
 		i += 1
-		
-	log1.write(logx)
 
 
 def acaba(jogador):
 	debug('\nThe winner is... ' + str(jogador))
+
 
 def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	logx = ''
