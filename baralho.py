@@ -22,22 +22,22 @@ class Carta():
 		return self.numero + ' de ' + self.naipe
 	
 	def __eq__(self, b):
-		True if self.valor == b.valor else False
+		return True if self.valor == b.valor else False
 
 	def __lt__(self, b):
-		True if self.valor < b.valor else False
+		return True if self.valor < b.valor else False
 	
 	def __gt__(self, b):
-		True if self.valor > b.valor else False
+		return True if self.valor > b.valor else False
 	
 	def __le__(self, b):
-		True if self.valor <= b.valor else False
+		return True if self.valor <= b.valor else False
 
 	def __ge__(self, b):
-		True if self.valor >= b.valor else False
+		return True if self.valor >= b.valor else False
 
 	def __ne__(self, b):
-		True if self.valor != b.valor else False
+		return True if self.valor != b.valor else False
 
 
 class Mao():
