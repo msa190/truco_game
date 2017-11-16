@@ -111,22 +111,33 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		i += 1
 		
 	log1.write(logx)
+
 def acaba(jogador):
 	debug('\nThe winner is... ' + str(jogador))
+	logx.append(jogador)
 
 def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	ordem=[[jogadorA, jogadorB], [jogadorB, jogadorA]]
 	i = 0
-	#log1.write('\n'+str(jogo)+';')
 	comecante = [0, 1]
 	k = comecante[0]
-	#log1.write(str(ordem[k][1]))
-	
 	while i <= 2:
 		debug('\n---------------------------------------------Rodada' +  str(i + 1))
 		carta1 = ordem[k][0].joga(A[i])
+		
+		logx.append(str(ordem[k][0]))
+		logx.append(';')
+		logx.append(str(carta1))
+		logx.append(';')
+		
 		debug('\n')
+		
 		carta2 = ordem[k][1].joga(B[i])
+		
+		logx.append(str(ordem[k][1]))
+		logx.append(';')
+		logx.append(str(carta2))
+		logx.append(';')
 		
 		if carta1 > carta2:
 			ordem[k][0].pontos += i*i -2*i + 2
@@ -135,7 +146,6 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			ordem[k][1].pontos += i*i -2*i + 2
 			
 		if carta1 == carta2:
-			debug('\nCangou!\n')
 			debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
 			acaba(ganhador)
@@ -165,7 +175,7 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			if buff == 1:
 				k = 0
 			i += 1
-
+	log1.write(str(logx))
 
 def debug(string):
 	if DEBUG:

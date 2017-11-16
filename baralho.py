@@ -19,7 +19,7 @@ class Carta():
 		self.valor = valor
 
 	def __str__(self):
-		return self.numero + ' de ' + self.naipe
+		return self.numero +'\''+ self.naipe
 	
 	def __eq__(self, b):
 		return True if self.valor == b.valor else False

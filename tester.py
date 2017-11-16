@@ -16,9 +16,9 @@ import truco_game
 
 N = 0 
 baralho = baralho.BaralhoDeTruco()
-jogador1 = jogador.Jogador('Mauricio')
+jogador1 = jogador.Jogador('A')
 
-jogador2 = jogador.Jogador('Gabriel')
+jogador2 = jogador.Jogador('B')
 
 if __name__ == '__main__':
 	i = 0
