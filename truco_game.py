@@ -3,7 +3,7 @@ import random
 from jogador import Jogador
 log1 = open('log1.log', 'a')
 
-DEBUG = True
+DEBUG = False
 
 def cangou(jogadorA, jogadorB, i, caso=0):
 	empate = Jogador('empate')
@@ -44,10 +44,10 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 	
 	while i <= 2:
 		#print k
-		print '\nRodada', i + 1, '\n'
+		#debug( '\nRodada', i + 1, '\n')
 		
 		carta1 = ordem[k][0].joga()
-		print '\n'
+		#debug( '\n')
 		carta2 = ordem[k][1].joga()
 		
 		if carta1 > carta2:
@@ -55,13 +55,13 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		elif carta1 < carta2:
 			ordem[k][1].pontos += i*i -2*i + 2
 		else:
-			print '\nCangou!\n'
+			debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
 			
 			#funcao acaba() -------------- implementar
 			#log1.write(';' + ganhador.name)
 			logx.append(';;;;;;;;'+ganhador.name)
-			print ganhador
+			debug(ganhador)
 			#return ganhador
 			break
 			#-----------------------------------------
@@ -103,35 +103,29 @@ def jogo_de_truco(jogadorA, jogadorB, jogo=1):
 		elif carta1 < carta2:
 			buff = k
 			print 'Torna a maior'
-		if buff == 0:
-			k = 1			
-		if buff == 1:
-			k = 0
+			if buff == 0:
+				k = 1			
+			if buff == 1:
+				k = 0
 	
 		i += 1
 		
 	log1.write(logx)
 def acaba(jogador):
-	#debug('\nThe winner is... ' + 'null')
-	print '\nThe winner is...: ', jogador
-	
+	debug('\nThe winner is... ' + str(jogador))
 
 def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 	ordem=[[jogadorA, jogadorB], [jogadorB, jogadorA]]
 	i = 0
 	#log1.write('\n'+str(jogo)+';')
 	comecante = [0, 1]
-	#random.shuffle(ordem)
 	k = comecante[0]
 	#log1.write(str(ordem[k][1]))
 	
 	while i <= 2:
-		#print k
-		# print '\n---------------------------------------------Rodada', i + 1
-		#debug('\n---------------------------------------------Rodada' +  str(i + 1))
+		debug('\n---------------------------------------------Rodada' +  str(i + 1))
 		carta1 = ordem[k][0].joga(A[i])
-		# print '\n'
-		#debug('\n')
+		debug('\n')
 		carta2 = ordem[k][1].joga(B[i])
 		
 		if carta1 > carta2:
@@ -141,8 +135,8 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			ordem[k][1].pontos += i*i -2*i + 2
 			
 		if carta1 == carta2:
-			# print '\nCangou!\n'
-		#	debug('\nCangou!\n')
+			debug('\nCangou!\n')
+			debug('\nCangou!\n')
 			ganhador = cangou(ordem[k][0], ordem[k][1], i)
 			acaba(ganhador)
 			break
@@ -154,7 +148,7 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			break
 			#-----------------------------------------
 			
-			#return ganhador
+			
 		if ordem[k][1].pontos >= 3:
 			ganhador = ordem[k][1]
 			acaba(ganhador)
@@ -162,15 +156,15 @@ def teste_de_truco(jogadorA, jogadorB, A=[], B=[], jogo=1):
 			#-----------------------------------------
 		
 		if carta1 > carta2:
-			print "Torna a maior"
+			debug('Torna a maior')
 		elif carta1 < carta2:
-			buff = k
-			print 'Torna a maior'
-		if buff == 0:
-			k = 1			
-		if buff == 1:
-			k = 0
-		i += 1
+			buff = comecante[0]
+			debug('Torna a maior')
+			if buff == 0:
+				k = 1			
+			if buff == 1:
+				k = 0
+			i += 1
 
 
 def debug(string):
