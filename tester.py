@@ -3,7 +3,7 @@ import random
 import baralho
 import jogador
 import truco_game
-
+from datetime import datetime
 N = 0 
 baralho = baralho.BaralhoDeTruco()
 jogador1 = jogador.Jogador('A')
@@ -26,7 +26,9 @@ if __name__ == '__main__':
 		jogador2.mao.add_carta(rodada[5])
 
 		truco_game.teste_de_truco(jogador1, jogador2, [1,1,1], [1,1,1])
-
-		i += 1
-
+		
+		if i%2131272 == 0:
+			now = now.datetime()
+			print i/213127200*100,'%',now.hour,':',now.minute,';',now.second
+			i += 1
 print i
