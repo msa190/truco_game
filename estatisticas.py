@@ -15,17 +15,19 @@ def zap_win(jogada):
         return False
 
 
-zap_count = 0
-zap_wins = 0
+zap_count = 0.0
+zap_wins = 0.0
 process = 0
 with file:
     for line in file:
-        jogada = line.split(';')
-        
-        if contains_zap(jogada):
-            zap_count += 1
-        if zap_win(jogada):
-            zap_wins += 1
-        if process%10000000:
-        	print process
-    	process +=1
+		jogada = line.split(';')
+		if contains_zap(jogada):
+			zap_count += 1
+		if zap_win(jogada):
+			zap_wins += 1		
+		if i%2131272 == 0:
+			now = now.datetime()
+			print i/213127200*100,'%',now.hour,':',now.minute,';',now.second
+print "zap ganha", zap_wins
+print "zap aparece", zap_count
+print zap_wins/zap_count*100,'%'
